@@ -133,10 +133,10 @@ spec:
     # they are applied after the operators have been successfully installed,
     # however, it's strongly recommended to include these CRs as day-0 extra manifests
     # to avoid the risk of an extra reboot.
-    - fileName: optional-extra-manifest/enable-crun-master.yaml
-      policyName: "config-policy"
-    - fileName: optional-extra-manifest/enable-crun-worker.yaml
-      policyName: "config-policy"
+    # - fileName: optional-extra-manifest/enable-crun-master.yaml
+    #   policyName: "config-policy"
+    # - fileName: optional-extra-manifest/enable-crun-worker.yaml
+    #   policyName: "config-policy"
 #    --- sources needed for image registry (check ImageRegistry.md for more details)----
 #    - fileName: StorageClass.yaml
 #      policyName: "config-policy"
@@ -156,7 +156,7 @@ spec:
 #        storageClassName: image-registry-sc
 #        volumeMode: Filesystem
 #    - fileName: ImageRegistryPV.yaml  # this is assuming that mount_point is set to `/var/imageregistry` in SiteConfig
-                                       # using StorageClass `image-registry-sc` (see the first sc-file)
+#                                      # using StorageClass `image-registry-sc` (see the first sc-file)
 #      policyName: "config-policy"
 #    - fileName: ImageRegistryConfig.yaml
 #      policyName: "config-policy"
