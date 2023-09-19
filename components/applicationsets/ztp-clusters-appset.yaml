@@ -36,7 +36,7 @@ spec:
       source:
         path: '{{path}}'
         repoURL: https://github.com/arjuhe/vse-carslab-hub.git
-        targetRevision: e920t-sub
+        targetRevision: e920t-sno
       destination:
         server: https://kubernetes.default.svc
         namespace: clusters-sub
