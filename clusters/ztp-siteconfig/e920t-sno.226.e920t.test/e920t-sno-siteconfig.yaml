@@ -1,0 +1,80 @@
+---
+apiVersion: ran.openshift.io/v1
+kind: SiteConfig
+metadata:
+  name: "e920t-sno"
+  namespace: "e920t-sno"
+spec:
+  baseDomain: "cars.lab"
+  pullSecretRef:
+    name: "assisted-deployment-pull-secret"
+  clusterImageSetNameRef: "img4.12.10-x86-64-appsub"
+# yamllint disable-line rule:line-length
+  sshPublicKey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFj3CU4mSOQzf0tc0p6HWeQ+9KeqeOLGmYsNlfnvnoRr e920t-sno-spokes"
+  clusters:
+    - clusterName: "e920t-sno"
+      clusterLabels:
+        group-vdu: ""
+        common-49: true
+        sites: "r740xls"
+      networkType: "OVNKubernetes"
+      clusterNetwork:
+        - cidr: 10.128.0.0/14
+          hostPrefix: 23
+        - cidr: fd01::/48
+          hostPrefix: 64
+      serviceNetwork:
+        - 172.30.0.0/16
+        - fd02::/112
+      machineNetwork:
+        - cidr: 10.60.0.0/24
+        - cidr: fd00:6:6:2051::0/64
+      additionalNTPSources:
+        - registry.cars.lab
+        - fd00:6:6:11::52
+      nodes:
+        - hostName: "supervisor1.e920t-sno.226.e920t.test"
+          role: master
+# yamllint disable-line rule:line-length
+          bmcAddress: "idrac-virtualmedia://192.168.14.226/redfish/v1/Systems/System.Embedded.1" # Is this correct
+          bmcCredentialsName:
+            name: "e920t-sno-bmc-creds-secret"
+          bootMACAddress: "40:A6:B7:3D:B3:70" # CHANGE ME
+          bootMode: "UEFI"
+          cpuset: "0-3,48-51"
+          nodeNetwork:
+            interfaces:
+              - name: "enp1s0"
+                macAddress: "40:A6:B7:3D:B3:70" # Change me
+            config:
+              interfaces:
+                - name: enp1s0
+                  type: ethernet
+                  state: up
+                  ipv4:
+                    enabled: true
+                    address:
+                      - ip: 10.60.0.60
+                        prefix-length: 24
+                  ipv6:
+                    enabled: true
+                    address:
+                      - ip: fd00:6:6:2051::60
+                        prefix-length: 64
+                    autoconf: false
+                    dhcp: false
+              dns-resolver:
+                config:
+                  search:
+                    - cars.lab
+                  server:
+                    - 10.40.0.100
+                    - fd00:6:6:11::52
+              routes:
+                config:
+                  - destination: 0.0.0.0/0
+                    next-hop-address: 10.60.0.1
+                    next-hop-interface: enp1s0
+                  - destination: ::/0
+                    next-hop-address: fd00:6:6:2051::1
+                    next-hop-interface: enp1s0

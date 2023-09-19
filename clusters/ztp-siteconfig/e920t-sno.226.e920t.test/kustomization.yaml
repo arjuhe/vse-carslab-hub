@@ -1,0 +1,46 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+generators:
+ - e920t-sno-siteconfig.yaml
+
+resources:
+ - github.com/redhat-partner-solutions/vse-ocp-bases/base/ztp/site-config?ref=main
+
+patches:
+ - target:
+    kind: Secret
+   patch: |-
+     - op: replace
+       path: /metadata/name
+       value: 'e920t-sno-bmc-creds-secret'
+     - op: replace
+       path: /metadata/namespace
+       value: 'e920t-sno'
+     - op: replace
+       path: /data/username
+       value: 'cm9vdA==' # I forgot how this gets encoded.
+     - op: replace
+       path: /data/password
+       value: 'YWx0aW9zdGFyMTIz' # Same here.
+ - target:
+    kind: SealedSecret
+   patch: |-
+     - op: replace
+       path: /metadata/name
+       value: 'assisted-deployment-pull-secret' # How do I add the pull-secret 
+     - op: replace
+       path: /metadata/namespace
+       value: 'e920t-sno'
+     - op: replace
+       path: /spec/encryptedData/.dockerconfigjson
+       value: 'xxxxx'
+     - op: replace
+       path: /spec/encryptedData/type
+     - op: replace
+       path: /spec/template/metadata/name
+       value: 'skidoo-bmc-creds-secret'
+     - op: replace
+       path: /spec/template/metadata/namespace
+       value: 'e920t-sno'

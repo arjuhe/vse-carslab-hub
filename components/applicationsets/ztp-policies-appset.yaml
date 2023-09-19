@@ -13,8 +13,8 @@ spec:
   generators:
     - git:
 # yamllint disable-line rule:line-length
-        repoURL: https://github.com/redhat-partner-solutions/vse-carslab-hub.git
-        revision: main
+        repoURL: https://github.com/arjuhe/vse-carslab-hub.git
+        revision: e920t-sno
         directories:
           - path: clusters/ztp-policies/*
   template:
@@ -37,8 +37,8 @@ spec:
       source:
         path: '{{path}}'
 # yamllint disable-line rule:line-length
-        repoURL: https://github.com/redhat-partner-solutions/vse-carslab-hub.git
-        targetRevision: main
+        repoURL: https://github.com/arjuhe/vse-carslab-hub.git
+        targetRevision: e920t-sno
       destination:
         server: https://kubernetes.default.svc
         namespace: policies-sub
