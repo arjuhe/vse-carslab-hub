@@ -5,10 +5,11 @@ metadata:
   name: "e920t-sno"
   namespace: "e920t-sno"
 spec:
-  baseDomain: "cars.lab"
+  baseDomain: "226.e920t.test"
   pullSecretRef:
     name: "assisted-deployment-pull-secret"
-  clusterImageSetNameRef: "img4.12.10-x86-64-appsub"
+    # $ oc get clusterimagesets.hive.openshift.io -A
+  clusterImageSetNameRef: "img4.12.10-x86-64-appsub" # Where do I get this img.
 # yamllint disable-line rule:line-length
   sshPublicKey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFj3CU4mSOQzf0tc0p6HWeQ+9KeqeOLGmYsNlfnvnoRr e920t-sno-spokes"
   clusters:

@@ -20,27 +20,27 @@ patches:
        value: 'e920t-sno'
      - op: replace
        path: /data/username
-       value: 'cm9vdA==' # I forgot how this gets encoded.
+       value: 'QWRtaW5pc3RyYXRvcgo=' # I forgot how this gets encoded.
      - op: replace
        path: /data/password
-       value: 'YWx0aW9zdGFyMTIz' # Same here.
+       value: 'UmVkaGF0MTIzIQo=' # Same here.
  - target:
     kind: SealedSecret
    patch: |-
      - op: replace
        path: /metadata/name
-       value: 'assisted-deployment-pull-secret' # How do I add the pull-secret 
+       value: 'assisted-deployment-pull-secret'
      - op: replace
        path: /metadata/namespace
        value: 'e920t-sno'
      - op: replace
        path: /spec/encryptedData/.dockerconfigjson
-       value: 'xxxxx'
+       value: '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'
      - op: replace
        path: /spec/encryptedData/type
      - op: replace
        path: /spec/template/metadata/name
-       value: 'skidoo-bmc-creds-secret'
+       value: 'e920t-sno-bmc-creds-secret'
      - op: replace
        path: /spec/template/metadata/namespace
        value: 'e920t-sno'
