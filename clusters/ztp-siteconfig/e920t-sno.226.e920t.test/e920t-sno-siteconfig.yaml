@@ -37,7 +37,7 @@ spec:
         - hostName: "supervisor1.e920t-sno.226.e920t.test"
           role: master
 # yamllint disable-line rule:line-length
-          bmcAddress: "idrac-virtualmedia://192.168.14.226/redfish/v1/Systems/System.Embedded.1" # Is this correct
+          bmcAddress: "idrac-virtualmedia://192.168.14.226/redfish/v1/Systems/1/"
           bmcCredentialsName:
             name: "e920t-sno-bmc-creds-secret"
           bootMACAddress: "40:A6:B7:3D:B3:70" # CHANGE ME
