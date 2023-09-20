@@ -2,7 +2,7 @@
 apiVersion: ran.openshift.io/v1
 kind: PolicyGenTemplate
 metadata:
-  name: "e920t-sno"
+  name: "e920t-sno-site-specific"
   namespace: "ztp-site"
 spec:
   bindingRules:
