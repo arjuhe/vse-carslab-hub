@@ -4,4 +4,4 @@ kind: Kustomization
 
 generators:
  - site-specific-policies/e920t-sno-site-specific.yaml
- - cluster-specific-policies/e920t-sno-site-specific.yaml
+ - cluster-specific-policies/e920t-sno-cluster-specific.yaml
